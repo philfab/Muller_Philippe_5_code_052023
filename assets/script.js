@@ -35,12 +35,12 @@ document.querySelectorAll('.arrow').forEach(arrow => {
     if (className =='arrow_right')
     {
       positionDot+=1;
-      if (positionDot > 3) positionDot = 0;
+      if (positionDot > slides.length-1) positionDot = 0;
     }
     else
     {
       positionDot-=1;
-      if (positionDot < 0) positionDot = 3;
+      if (positionDot < 0) positionDot = slides.length-1;
     }
 
     divDotsElt.children[positionDot].classList.add('dot_selected');
