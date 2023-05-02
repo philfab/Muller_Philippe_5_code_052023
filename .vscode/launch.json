@@ -4,6 +4,7 @@
     // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "firefox",
             "request": "launch",
@@ -11,6 +12,7 @@
             "name": "Launch index.html",
             "file": "${workspaceFolder}/index.html"
         },
+
         {
             "type": "chrome",
             "request": "launch",
