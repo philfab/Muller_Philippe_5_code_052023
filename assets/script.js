@@ -1,5 +1,4 @@
 "use strict";
-var positionDot = 0;
 
 const slides = [
   {
@@ -20,44 +19,35 @@ const slides = [
   },
 ];
 
-//container .dots
-const divDotsElt = document.querySelector('.dots');
-const banniereElt = document.querySelector('.banner-img');
-const texteElt = banniereElt.nextElementSibling;
+const dotsElt = document.querySelector(".dots");
+const bannerElt = document.querySelector(".banner-img");
+const textElt = bannerElt.nextElementSibling;
 
-// Event sur les deux fleches avec msg
-document.querySelectorAll('.arrow').forEach(arrow => {
-  arrow.addEventListener('click', () => {
-    const className = arrow.className.split(' ')[1];
-    console.log('click ' + className);
-    divDotsElt.children[positionDot].classList.remove('dot_selected');
+let positionDot = 0;
 
-    if (className =='arrow_right')
-    {
-      positionDot+=1;
-      if (positionDot > slides.length-1) positionDot = 0;
-    }
-    else
-    {
-      positionDot-=1;
-      if (positionDot < 0) positionDot = slides.length-1;
-    }
+function navigArrows (event) {
+  let className = event.target.className.split(' ')[1];
+  console.log("click " + className);
+  dotsElt.children[positionDot].classList.remove("dot_selected");
 
-    divDotsElt.children[positionDot].classList.add('dot_selected');
-    banniereElt.src = './assets/images/slideshow/'+ slides[positionDot].image;
-    texteElt.innerHTML =slides[positionDot].tagLine;
-  });
-});
+  if (className === "arrow_right") 
+    positionDot = (positionDot + 1 > slides.length - 1) ? 0 : positionDot + 1;
+  else
+    positionDot = (positionDot - 1 < 0) ? positionDot = slides.length - 1 : positionDot - 1;
 
-for (let dot = 0; dot < slides.length; dot++) {
-  const span = document.createElement('span');
-  span.classList.add('dot');
-  divDotsElt.appendChild(span);
+  dotsElt.children[positionDot].classList.add("dot_selected");
+  bannerElt.src = "./assets/images/slideshow/"+ slides[positionDot].image;
+  textElt.innerHTML = slides[positionDot].tagLine;
 }
 
-//on selectiuonne le 1er point
-divDotsElt.children[positionDot].classList.add('dot_selected');
+document.querySelectorAll(".arrow").forEach(arrow => {
+  arrow.addEventListener("click", navigArrows);
+});
 
+for (let slide = 0; slide < slides.length; slide++) {
+  const dot = document.createElement("span");
+  dot.classList.add("dot");
+  dotsElt.appendChild(dot);
+}
 
-
-
+dotsElt.children[positionDot].classList.add("dot_selected");
