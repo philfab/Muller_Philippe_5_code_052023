@@ -40,7 +40,7 @@ function navigArrows (event) {
   textElt.innerHTML = slides[positionDot].tagLine;
 }
 
-document.querySelectorAll(".arrow").forEach(arrow => {
+  document.querySelectorAll(".arrow").forEach(arrow => {
   arrow.addEventListener("click", navigArrows);
 });
 
