@@ -33,16 +33,16 @@ function navigArrows (event) {
   if (className === "arrow_right") 
     positionDot = (positionDot + 1 > slides.length - 1) ? 0 : positionDot + 1;
   else
-    positionDot = (positionDot - 1 < 0) ? positionDot = slides.length - 1 : positionDot - 1;
+    positionDot = (positionDot - 1 < 0) ? slides.length - 1 : positionDot - 1;
 
   dotsElt.children[positionDot].classList.add("dot_selected");
-  bannerElt.src = "./assets/images/slideshow/"+ slides[positionDot].image;
+  bannerElt.src = "./assets/images/slideshow/" + slides[positionDot].image;
   textElt.innerHTML = slides[positionDot].tagLine;
 }
 
-  document.querySelectorAll(".arrow").forEach(arrow => {
-  arrow.addEventListener("click", navigArrows);
-});
+  document.querySelectorAll(".arrow").forEach (
+    arrow => arrow.addEventListener("click", navigArrows)
+  );
 
 for (let slide = 0; slide < slides.length; slide++) {
   const dot = document.createElement("span");
